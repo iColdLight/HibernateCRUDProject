@@ -1,0 +1,71 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="init tables" author="Igor">
+        <createTable tableName="developers">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="speciality_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="skills">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="skill_name" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="specialities">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="speciality_name" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="developers_skills">
+            <column name="developer_id" type="BIGINT">
+            </column>
+            <column name="skill_id" type="BIGINT">
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="developers_skills" columnNames="developer_id,skill_id"/>
+
+        <addForeignKeyConstraint baseTableName="developers_skills" baseColumnNames="developer_id"
+                                 constraintName="fk1_developers_skills"
+                                 referencedTableName="developers"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="developers_skills" baseColumnNames="skill_id"
+                                 constraintName="fk2_developers_skills"
+                                 referencedTableName="skills"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="developers" baseColumnNames="speciality_id"
+                                 constraintName="fk_developer_speciality"
+                                 referencedTableName="specialities"
+                                 referencedColumnNames="id" onDelete="SET NULL"/>
+
+    </changeSet>
+
+
+
+</databaseChangeLog>
