@@ -15,7 +15,9 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
         List<Developer> developerList;
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        developerList = session.createQuery("from Developer").list();
+        developerList = session.createQuery("select distinct d from Developer d " +
+                "left join fetch d.skills s " +
+                "left join fetch d.speciality sp").getResultList();
         transaction.commit();
         session.close();
         return developerList;

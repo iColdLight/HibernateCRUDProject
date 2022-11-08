@@ -33,9 +33,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="e5141178-5de9-41e6-b0eb-f8e36f778f3d" object-ref="schemas/hibernateproject/tables/developers" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="e5141178-5de9-41e6-b0eb-f8e36f778f3d" />
