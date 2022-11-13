@@ -16,6 +16,7 @@
         <liquibase.version>4.16.1</liquibase.version>
         <junit.version>4.13</junit.version>
         <mockito.version>3.2.4</mockito.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
 
     <dependencies>
@@ -49,7 +50,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

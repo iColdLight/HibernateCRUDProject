@@ -36,7 +36,8 @@ public class DeveloperView {
 
     public void updateDeveloper() {
         System.out.println("Enter developer id you want to update: ");
-        Long id = Long.parseLong(scanner.nextLine());
+        Long id = scanner.nextLong();
+        scanner.nextLine();
         System.out.println("Enter new First name: ");
         String newFirstName = scanner.nextLine();
         System.out.println("Enter new Last name: ");
@@ -49,5 +50,4 @@ public class DeveloperView {
         Long developerID = scanner.nextLong();
         developerController.deleteDeveloper(developerID);
     }
-
 }

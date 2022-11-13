@@ -32,11 +32,11 @@ public class SkillService {
     public Skill updateSkill(Long id, String newSkill) {
         List<Skill> allSkills = getAllSkills();
         Skill skill = allSkills.stream().filter(s -> s.getId().equals(id)).findFirst().orElse(null);
-        if (skill != null) {
-            skill.setSkillName(newSkill);
-            return skillRepository.update(skill);
+        if (skill == null) {
+            throw new RuntimeException("Skill with ID = " + id + "not found");
         }
-        throw new RuntimeException("Skill with ID = " + id + "not found");
+        skill.setSkillName(newSkill);
+        return skillRepository.update(skill);
     }
 
     public Skill deleteSkillByID(Long id) {

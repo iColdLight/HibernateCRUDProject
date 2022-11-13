@@ -34,7 +34,8 @@ public class SpecialityView {
 
     public void updateSpeciality() {
         System.out.println("Enter speciality ID you want to update: ");
-        Long id = Long.parseLong(scanner.nextLine());
+        Long id = scanner.nextLong();
+        scanner.nextLine();
         System.out.println("Enter a new speciality name: ");
         String newSpeciality = scanner.nextLine();
         specialityController.updateSpeciality(id, newSpeciality);

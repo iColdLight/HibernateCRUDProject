@@ -156,25 +156,16 @@ public class DeveloperServiceTest {
 
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void getDeveloperByIDException() {
         //given
-        String firstName = "Igor";
-        String lastName = "Popovich";
-        Developer developer = Developer.builder()
-                .firstName(firstName)
-                .lastName(lastName)
-                .build();
         Long id = 1L;
 
         //when
-        when(developerRepository.getByID(id)).thenReturn(developer);
+        when(developerRepository.getByID(id)).thenThrow(new RuntimeException());
 
         //then
-        Developer developerByID = developerService.getDeveloperByID(id);
-        assertEquals(firstName, developerByID.getFirstName());
-        assertEquals(lastName, developerByID.getLastName());
-
+        developerService.getDeveloperByID(id);
     }
 
     @Test(expected = RuntimeException.class)
@@ -217,7 +208,6 @@ public class DeveloperServiceTest {
         assertEquals("Bobovich", developerArgumentCaptor.getValue().getLastName());
         assertEquals(1L, developerArgumentCaptor.getValue().getId().longValue());
 
-
     }
 
     @Test(expected = RuntimeException.class)
@@ -227,7 +217,6 @@ public class DeveloperServiceTest {
 
         //then
         developerService.deleteDeveloperByID(1L);
-
     }
 
     @Test
@@ -248,7 +237,6 @@ public class DeveloperServiceTest {
         //then
         developerService.deleteDeveloperByID(1L);
         assertEquals(1L, developerArgumentCaptor.getValue().getId().longValue());
-
     }
 
 }

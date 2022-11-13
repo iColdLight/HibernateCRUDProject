@@ -35,7 +35,8 @@ public class SkillView {
 
     public void updateSkill() {
         System.out.println("Enter skill id you want to update: ");
-        Long id = Long.parseLong(scanner.nextLine());
+        Long id = scanner.nextLong();
+        scanner.nextLine();
         System.out.println("Enter a new skill name: ");
         String newSkill = scanner.nextLine();
         skillController.updateSkill(id, newSkill);
